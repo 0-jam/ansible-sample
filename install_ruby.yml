@@ -1,5 +1,5 @@
 ---
-- name: Create Rails Environment (Ubuntu)
+- name: Install Ruby (Ubuntu)
   hosts: all
   tasks:
      - name: apt update
