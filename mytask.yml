@@ -11,3 +11,8 @@
        copy:
          src: README.md
          dest: /tmp/readme.md
+     - name: Create a directory
+       file:
+         path: "{{ ansible_facts.env.HOME }}/test_parent/test_child"
+         state: directory
+         recurse: yes
