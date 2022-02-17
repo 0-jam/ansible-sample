@@ -2,14 +2,6 @@
 - name: Install Ruby (Ubuntu)
   hosts: all
   tasks:
-     - name: apt update
-       command: "sudo apt update"
-     - name: install postgresql
-       command: "sudo apt install -y postgresql libpq-dev"
-     - name: install git
-       command: "sudo apt install -y git"
-     - name: install packages to build ruby
-       command: "sudo apt install -y build-essential libssl-dev libreadline-dev zlib1g-dev"
      - name: install rbenv
        git:
          repo: "https://github.com/sstephenson/rbenv.git"
@@ -28,4 +20,4 @@
          repo: "https://github.com/rbenv/ruby-build.git"
          dest: "{{ ansible_facts.env.HOME }}/.rbenv/plugins/ruby-build"
      - name: install ruby
-       command: ~/.rbenv/bin/rbenv install 3.0.3
+       command: ~/.rbenv/bin/rbenv install 3.1.0
