@@ -1,0 +1,28 @@
+---
+- name: Initialize PostgreSQL (Ubuntu)
+  hosts: all
+  tasks:
+    - name: install dependency
+      apt:
+        pkg:
+          - python3-psycopg2
+        update_cache: yes
+      become: true
+    - name: start postgresql
+      service:
+        name: postgresql
+        state: started
+        enabled: true
+    - name: Create a new database with name "r702sampleapp_production"
+      community.postgresql.postgresql_db:
+        name: r702sampleapp_production
+      become: true
+      become_user: postgres
+    - name: Connect to r702sampleapp_production database, create database user, and grant access to database and products table
+      community.postgresql.postgresql_user:
+        db: r702sampleapp_production
+        name: "{{ ansible_facts.env.USER }}"
+        password: x9SmQ4LLcfWCJJuh
+        priv: ALL
+      become: true
+      become_user: postgres
