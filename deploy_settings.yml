@@ -1,0 +1,13 @@
+---
+- name: Settings for deploy Rails app (Ubuntu)
+  hosts: all
+  tasks:
+     - name: Create a directory
+       file:
+         path: "{{ ansible_facts.env.HOME }}/r702sampleapp/shared/config"
+         state: directory
+         recurse: yes
+     - name: Copy master.key
+       copy:
+         src: "config/master.key"
+         dest: "{{ ansible_facts.env.HOME }}/r702sampleapp/shared/config/master.key"
