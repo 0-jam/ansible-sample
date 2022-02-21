@@ -54,5 +54,6 @@ Identity added: /Users/jam/.ssh/gce (<user>)
 ### PostgreSQL 設定
 
 ```
-(.venv) % ansible-playbook setup_postgres.yml.yml -i hosts -u <user>
+(.venv) % ansible-playbook setup_postgres.yml.yml -i hosts -u <user> --ask-vault-pass
+Vault password:
 ```
