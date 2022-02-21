@@ -2,15 +2,16 @@
 - name: Install Dependencies (Ubuntu)
   hosts: all
   tasks:
-     - name: apt update
-       command: "apt update"
-       become: true
-     - name: install postgresql
-       command: "apt install -y postgresql libpq-dev"
-       become: true
-     - name: install git
-       command: "apt install -y git"
-       become: true
-     - name: install packages to build ruby
-       command: "apt install -y build-essential libssl-dev libreadline-dev zlib1g-dev"
-       become: true
+    - name: install dependency
+      apt:
+        pkg:
+          - postgresql
+          - libpq-dev
+          - git
+          - build-essential
+          - libssl-dev
+          - libreadline-dev
+          - zlib1g-dev
+          - nginx
+        update_cache: yes
+      become: true
