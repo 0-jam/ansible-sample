@@ -2,6 +2,8 @@
 - name: Initialize PostgreSQL (Ubuntu)
   hosts: all
   tasks:
+    - name: Import variables
+      include_vars: "ansible_credentials.yml"
     - name: install dependency
       apt:
         pkg:
@@ -22,7 +24,7 @@
       community.postgresql.postgresql_user:
         db: r702sampleapp_production
         name: "{{ ansible_facts.env.USER }}"
-        password: x9SmQ4LLcfWCJJuh
+        password: "{{ db_password }}"
         priv: ALL
       become: true
       become_user: postgres
