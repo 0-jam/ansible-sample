@@ -2,22 +2,35 @@
 - name: Install Ruby (Ubuntu)
   hosts: all
   tasks:
-     - name: install rbenv
-       git:
-         repo: "https://github.com/sstephenson/rbenv.git"
-         dest: "{{ ansible_facts.env.HOME }}/.rbenv"
-     - name: setup environment variables (copy .bashrc)
-       copy:
-         src: bashrc
-         dest: "{{ ansible_facts.env.HOME }}/.bashrc"
-     - name: Create a directory
-       file:
-         path: "{{ ansible_facts.env.HOME }}/.rbenv/plugins"
-         state: directory
-         recurse: yes
-     - name: install ruby-build
-       git:
-         repo: "https://github.com/rbenv/ruby-build.git"
-         dest: "{{ ansible_facts.env.HOME }}/.rbenv/plugins/ruby-build"
-     - name: install ruby
-       command: ~/.rbenv/bin/rbenv install 3.1.0
+    - name: install dependency
+      apt:
+        pkg:
+          - libpq-dev
+          - git
+          - build-essential
+          - libssl-dev
+          - libreadline-dev
+          - zlib1g-dev
+        update_cache: yes
+      become: true
+    - name: install rbenv
+      git:
+        repo: "https://github.com/sstephenson/rbenv.git"
+        dest: "{{ ansible_facts.env.HOME }}/.rbenv"
+    - name: setup environment variables (copy .bashrc)
+      copy:
+        src: bashrc
+        dest: "{{ ansible_facts.env.HOME }}/.bashrc"
+    - name: Create a directory
+      file:
+        path: "{{ ansible_facts.env.HOME }}/.rbenv/plugins"
+        state: directory
+        recurse: yes
+    - name: install ruby-build
+      git:
+        repo: "https://github.com/rbenv/ruby-build.git"
+        dest: "{{ ansible_facts.env.HOME }}/.rbenv/plugins/ruby-build"
+    - name: install ruby
+      shell: rbenv install 3.1.0
+      args:
+        creates: "{{ ansible_facts.env.HOME }}/.rbenv/versions/3.1.0/bin/ruby"
