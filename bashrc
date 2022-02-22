@@ -119,3 +119,4 @@ fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 export RUBY_CONFIGURE_OPTS=--disable-install-doc
 eval "$(rbenv init -)"
+export RAILS_ENV=production
