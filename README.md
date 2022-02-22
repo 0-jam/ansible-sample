@@ -48,7 +48,6 @@ Identity added: /Users/jam/.ssh/gce (<user>)
 ### Ruby インストール
 
 ```
-(.venv) % ansible-playbook install_dependency.yml -i hosts -u <user>
 (.venv) % ansible-playbook install_ruby.yml -i hosts -u <user>
 ```
 
