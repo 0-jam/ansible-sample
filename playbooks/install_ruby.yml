@@ -31,6 +31,6 @@
         repo: "https://github.com/rbenv/ruby-build.git"
         dest: "{{ ansible_facts.env.HOME }}/.rbenv/plugins/ruby-build"
     - name: install ruby
-      shell: bash -lc "{{ ansible_facts.env.HOME }}/.rbenv/bin/rbenv install 3.1.0"
+      shell: bash -lc "{{ ansible_facts.env.HOME }}/.rbenv/bin/rbenv install 3.1.1"
       args:
-        creates: "{{ ansible_facts.env.HOME }}/.rbenv/versions/3.1.0/bin/ruby"
+        creates: "{{ ansible_facts.env.HOME }}/.rbenv/versions/3.1.1/bin/ruby"
