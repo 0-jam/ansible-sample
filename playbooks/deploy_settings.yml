@@ -9,5 +9,5 @@
          recurse: yes
      - name: Copy master.key
        copy:
-         src: "config/master.key"
+         src: "../config/master.key"
          dest: "{{ ansible_facts.env.HOME }}/r702sampleapp/shared/config/master.key"

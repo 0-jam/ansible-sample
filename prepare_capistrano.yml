@@ -1,0 +1,9 @@
+---
+- name: Install Ruby (Ubuntu)
+  import_playbook: "playbooks/install_ruby.yml"
+- name: Install and setup Nginx (Ubuntu)
+  import_playbook: "playbooks/setup_nginx.yml"
+- name: Install and setup PostgreSQL (Ubuntu)
+  import_playbook: "playbooks/setup_postgres.yml"
+- name: Prepare servers for Capistrano deployment (Ubuntu)
+  import_playbook: "playbooks/deploy_settings.yml"

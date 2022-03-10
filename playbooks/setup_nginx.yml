@@ -1,0 +1,15 @@
+---
+- name: Initialize Nginx (Ubuntu)
+  hosts: all
+  tasks:
+    - name: install dependency
+      apt:
+        pkg:
+          - nginx
+        update_cache: yes
+      become: true
+    - name: start nginx
+      service:
+        name: nginx
+        state: started
+        enabled: true
